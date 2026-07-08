@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 // import AdSlot from "@/components/promos/ad-slot";
 import PromoBrand from "@/components/promos/promo-brand";
 import PromoCard from "@/components/promos/promo-card";
+import PromoDetailViewTracker from "@/components/promos/promo-detail-view-tracker";
 import PromoImage from "@/components/promos/promo-image";
+import PromoMarketplaceLink from "@/components/promos/promo-marketplace-link";
 import { hasDatabaseConfig } from "@/lib/db";
 import { bestDiscountLabel, categoryLabel, formatCurrency, relevanceScoreLabel, savingsText, timeAgo } from "@/lib/promo-format";
 import { getPromoById, getRelatedPromos } from "@/lib/promos";
@@ -37,6 +39,7 @@ export default async function PromoPage({ params }: PromoPageProps) {
 
   return (
     <main className="min-h-screen bg-gray-100 dark:bg-gray-900">
+      <PromoDetailViewTracker brandName={promo.brandName} category={promo.category} price={promo.newPrice} productName={promo.productName} promoId={promo.id} />
       <header className="sticky top-0 z-30 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-700/60 dark:bg-gray-900/90">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <PromoBrand />
@@ -108,15 +111,20 @@ export default async function PromoPage({ params }: PromoPageProps) {
                 </div>
               ) : null}
 
-              <a
+              <PromoMarketplaceLink
                 href={`/api/promos/${promo.id}/go`}
                 className={`btn w-full justify-center rounded-md px-5 py-4 text-base font-black text-white shadow-lg ${
                   promo.isFresh ? "bg-green-600 shadow-green-600/20 hover:bg-green-700" : "bg-gray-500 hover:bg-gray-600"
                 }`}
-                rel="nofollow sponsored"
+                brandName={promo.brandName}
+                category={promo.category}
+                location="pdp"
+                price={promo.newPrice}
+                productName={promo.productName}
+                promoId={promo.id}
               >
                 Pegar promo agora
-              </a>
+              </PromoMarketplaceLink>
 
               <p className="mt-3 text-center text-xs font-medium text-gray-400 dark:text-gray-500">
                 Precos sujeitos a alteracao no marketplace.

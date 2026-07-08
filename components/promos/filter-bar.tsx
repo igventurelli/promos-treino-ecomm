@@ -1,8 +1,10 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { useRef } from "react";
 
 import { categories } from "@/lib/categories";
+import { trackEvent } from "@/lib/analytics";
 import type { FilterOptions, PromoFilters } from "@/lib/promos";
 
 type FilterBarProps = {
@@ -17,8 +19,40 @@ export default function FilterBar({ filters, options }: FilterBarProps) {
     formRef.current?.requestSubmit();
   };
 
+  const trackFilters = (event: FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(event.currentTarget);
+    const query = String(formData.get("q") || "").trim();
+    const category = String(formData.get("category") || "").trim();
+    const brand = String(formData.get("brand") || "").trim();
+
+    trackEvent("promo_filter_submit", {
+      brand: brand || null,
+      category: category || null,
+      has_search_term: Boolean(query),
+      search_term: query || null,
+    });
+
+    if (query) {
+      trackEvent("promo_search", {
+        search_term: query,
+      });
+    }
+
+    if (category) {
+      trackEvent("promo_filter_category", {
+        category,
+      });
+    }
+
+    if (brand) {
+      trackEvent("promo_filter_brand", {
+        brand,
+      });
+    }
+  };
+
   return (
-    <form ref={formRef} action="/" className="rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-700/60 dark:bg-gray-800">
+    <form ref={formRef} action="/" onSubmit={trackFilters} className="rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-700/60 dark:bg-gray-800">
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-[1.5fr_0.9fr_1fr_auto]">
         <label className="relative">
           <span className="sr-only">Buscar promo</span>

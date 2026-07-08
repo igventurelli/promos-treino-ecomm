@@ -1,7 +1,10 @@
 import "./css/style.css";
 
+import { Suspense } from "react";
+
 import AppProvider from "./app-provider";
 import Theme from "./theme-provider";
+import GoogleAnalytics from "@/components/analytics/google-analytics";
 
 export const metadata = {
   title: "Promos Treino",
@@ -22,6 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Theme>
           <AppProvider>{children}</AppProvider>
         </Theme>
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
       </body>
     </html>
   );
