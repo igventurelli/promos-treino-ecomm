@@ -136,3 +136,37 @@
     border-color: var(--color-gray-200, currentColor);
   }
 }
+
+@keyframes promo-pulse-scale {
+  0%,
+  100% {
+    transform: scale(0.97);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@layer components {
+  .promo-pdp-cta {
+    animation: promo-pulse-scale 1.35s ease-in-out infinite;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .promo-pdp-cta:hover {
+    filter: brightness(1.1);
+  }
+
+  .promo-pdp-cta:active {
+    animation: none;
+    transform: scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-pdp-cta {
+    animation: none;
+  }
+}

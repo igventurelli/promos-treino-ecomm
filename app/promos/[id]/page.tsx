@@ -113,9 +113,7 @@ export default async function PromoPage({ params }: PromoPageProps) {
 
               <PromoMarketplaceLink
                 href={`/api/promos/${promo.id}/go`}
-                className={`btn w-full justify-center rounded-md px-5 py-4 text-base font-black text-white shadow-lg ${
-                  promo.isFresh ? "bg-green-600 shadow-green-600/20 hover:bg-green-700" : "bg-gray-500 hover:bg-gray-600"
-                }`}
+                className="btn promo-pdp-cta w-full justify-center rounded-md bg-green-600 px-5 py-4 text-base font-black whitespace-nowrap text-white shadow-lg shadow-green-600/20 hover:bg-green-700"
                 brandName={promo.brandName}
                 category={promo.category}
                 location="pdp"
