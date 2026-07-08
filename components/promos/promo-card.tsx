@@ -20,7 +20,7 @@ export default function PromoCard({ promo }: PromoCardProps) {
   return (
     <article className="group col-span-full flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xs transition hover:-translate-y-0.5 hover:border-green-300 hover:shadow-md sm:col-span-6 xl:col-span-4 dark:border-gray-700/60 dark:bg-gray-800">
       <Link
-        href={`/promos/${promo.id}`}
+        href={`/p/${promo.id}`}
         className="relative block aspect-[4/3] bg-white dark:bg-gray-900"
         onClick={() => {
           trackEvent("promo_detail_click", {
@@ -48,7 +48,7 @@ export default function PromoCard({ promo }: PromoCardProps) {
         </div>
 
         <Link
-          href={`/promos/${promo.id}`}
+          href={`/p/${promo.id}`}
           className="mb-3 line-clamp-2 min-h-12 text-base leading-6 font-bold text-gray-800 hover:text-green-700 dark:text-gray-100 dark:hover:text-green-400"
           onClick={() => {
             trackEvent("promo_detail_click", {

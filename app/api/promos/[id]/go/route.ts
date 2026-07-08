@@ -28,6 +28,6 @@ export async function GET(request: Request, { params }: RouteContext) {
   try {
     return NextResponse.redirect(new URL(promo.productUrl), 302);
   } catch {
-    return NextResponse.redirect(new URL(`/promos/${id}`, request.url), 302);
+    return NextResponse.redirect(new URL(`/p/${id}`, request.url), 302);
   }
 }
