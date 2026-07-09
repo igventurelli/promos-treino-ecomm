@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import CookiePreferencesButton from "@/components/consent/cookie-preferences-button";
-
 export default function PromoFooter() {
   return (
     <footer className="border-t border-gray-200 bg-white/80 dark:border-gray-700/60 dark:bg-gray-900/80">
@@ -11,7 +9,6 @@ export default function PromoFooter() {
           <Link href="/privacidade" className="font-bold text-gray-700 hover:text-green-700 dark:text-gray-300 dark:hover:text-green-300">
             Privacidade
           </Link>
-          <CookiePreferencesButton />
         </nav>
       </div>
     </footer>

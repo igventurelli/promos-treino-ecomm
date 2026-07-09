@@ -32,9 +32,6 @@ export default function PrivacyPage() {
             Usamos produtos do Google, como Google Analytics e Google AdSense, para medir audiencia, entender interacoes no site e exibir anuncios. Como consequencia, o Google e outros terceiros podem usar cookies, web beacons, enderecos IP ou identificadores semelhantes para coletar, compartilhar e usar dados relacionados a visitas, paginas acessadas, cliques e interacoes com anuncios.
           </p>
           <p className="mt-2 text-sm leading-6 font-medium text-gray-600 dark:text-gray-300">
-            Analytics e anuncios sao carregados apenas apos o aceite no aviso de cookies. Voce pode reabrir a escolha pelo link "Cookies" no rodape.
-          </p>
-          <p className="mt-2 text-sm leading-6 font-medium text-gray-600 dark:text-gray-300">
             Saiba mais em{" "}
             <a href="https://policies.google.com/technologies/partner-sites" className="font-bold text-green-700 hover:text-green-800 dark:text-green-300 dark:hover:text-green-200" rel="nofollow">
               Como o Google usa dados quando voce usa sites ou apps dos nossos parceiros

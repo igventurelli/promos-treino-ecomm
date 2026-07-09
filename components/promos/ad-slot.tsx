@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { useCookieConsent } from "@/components/consent/use-cookie-consent";
 import { adsenseClientId } from "@/lib/adsense";
 
 type AdSlotProps = {
@@ -32,11 +31,10 @@ const adSlots: Record<string, string | undefined> = {
 export default function AdSlot({ placement, className = "", compact = false }: AdSlotProps) {
   const slot = adSlots[placement] || process.env.NEXT_PUBLIC_ADSENSE_SLOT;
   const adRef = useRef<HTMLModElement>(null);
-  const { hasAccepted } = useCookieConsent();
   const [visibility, setVisibility] = useState<AdVisibility>(slot ? "loading" : "hidden");
 
   useEffect(() => {
-    if (!slot || !hasAccepted) {
+    if (!slot) {
       setVisibility("hidden");
       return;
     }
@@ -79,9 +77,9 @@ export default function AdSlot({ placement, className = "", compact = false }: A
       observer?.disconnect();
       window.clearTimeout(timeoutId);
     };
-  }, [hasAccepted, slot]);
+  }, [slot]);
 
-  if (!slot || !hasAccepted || visibility === "hidden") return null;
+  if (!slot || visibility === "hidden") return null;
 
   return (
     <aside

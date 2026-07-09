@@ -4,22 +4,16 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
 import { useEffect } from "react";
 
-import { useCookieConsent } from "@/components/consent/use-cookie-consent";
 import { gaMeasurementId, trackPageView } from "@/lib/analytics";
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { hasAccepted } = useCookieConsent();
 
   useEffect(() => {
-    if (!hasAccepted) return;
-
     const queryString = searchParams.toString();
     trackPageView(queryString ? `${pathname}?${queryString}` : pathname);
-  }, [hasAccepted, pathname, searchParams]);
-
-  if (!hasAccepted) return null;
+  }, [pathname, searchParams]);
 
   return (
     <>
