@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { adsenseClientId } from "@/components/analytics/google-adsense";
+import { adsenseClientId } from "@/lib/adsense";
 
 type AdSlotProps = {
   placement: string;
