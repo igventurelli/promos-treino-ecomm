@@ -2,6 +2,8 @@ import AdSlot from "@/components/promos/ad-slot";
 import FilterBar from "@/components/promos/filter-bar";
 import PromoBrand from "@/components/promos/promo-brand";
 import PromoCard from "@/components/promos/promo-card";
+import PromoFooter from "@/components/promos/promo-footer";
+import WhatsAppGroupButton from "@/components/promos/whatsapp-group-button";
 import { hasDatabaseConfig } from "@/lib/db";
 import { getFilterOptions, getPromos, type FilterOptions, type Promo, type PromoFilters } from "@/lib/promos";
 import Link from "next/link";
@@ -67,9 +69,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <header className="sticky top-0 z-30 border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-700/60 dark:bg-gray-900/90">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <PromoBrand />
-          <div className="hidden items-center gap-2 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm font-bold text-green-800 sm:flex dark:border-green-900/60 dark:bg-green-900/20 dark:text-green-300">
-            Promos das ultimas 24h
-          </div>
+          <WhatsAppGroupButton href={process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL} />
         </div>
       </header>
 
@@ -85,12 +85,8 @@ export default async function Home({ searchParams }: HomeProps) {
         <FilterBar filters={filters} options={options} />
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-12 sm:px-6 lg:grid-cols-[1fr_300px] lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <div>
-          <div className="mb-5">
-            <AdSlot placement="plp-top" compact />
-          </div>
-
           <div className="mb-4 flex items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-black text-gray-900 dark:text-gray-100">Promos para pegar agora</h2>
@@ -102,6 +98,8 @@ export default async function Home({ searchParams }: HomeProps) {
               {promos.length} ativas nas ultimas 24h
             </div>
           </div>
+
+          <AdSlot placement="plp-top" className="mb-5" compact />
 
           {promos.length > 0 ? (
             <>
@@ -166,11 +164,8 @@ export default async function Home({ searchParams }: HomeProps) {
             </div>
           )}
         </div>
-        <aside className="space-y-5">
-          <AdSlot placement="plp-sidebar-top" />
-          <AdSlot placement="plp-sidebar-bottom" />
-        </aside>
       </section>
+      <PromoFooter />
     </main>
   );
 }

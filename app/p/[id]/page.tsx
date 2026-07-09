@@ -5,8 +5,10 @@ import AdSlot from "@/components/promos/ad-slot";
 import PromoBrand from "@/components/promos/promo-brand";
 import PromoCard from "@/components/promos/promo-card";
 import PromoDetailViewTracker from "@/components/promos/promo-detail-view-tracker";
+import PromoFooter from "@/components/promos/promo-footer";
 import PromoImage from "@/components/promos/promo-image";
 import PromoMarketplaceLink from "@/components/promos/promo-marketplace-link";
+import PromoShareButton from "@/components/promos/promo-share-button";
 import { hasDatabaseConfig } from "@/lib/db";
 import { bestDiscountLabel, categoryLabel, formatCurrency, relevanceScoreLabel, savingsText, timeAgo } from "@/lib/promo-format";
 import { getPromoById, getRelatedPromos } from "@/lib/promos";
@@ -57,11 +59,13 @@ export default async function PromoPage({ params }: PromoPageProps) {
         ) : null}
 
         <div className="grid gap-6 lg:grid-cols-[1fr_420px]">
-          <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xs dark:border-gray-700/60 dark:bg-gray-800">
-            <div className="relative aspect-[4/3] bg-white dark:bg-gray-900">
-              <PromoImage src={promo.imageUrl} alt={promo.productName} />
-              <div className="absolute top-4 left-4 rounded-md bg-red-600 px-3 py-1.5 text-sm font-black tracking-wide text-white uppercase shadow-sm">
-                {bestDiscountLabel(promo)}
+          <div className="space-y-4">
+            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xs dark:border-gray-700/60 dark:bg-gray-800">
+              <div className="relative aspect-[4/3] bg-white dark:bg-gray-900">
+                <PromoImage src={promo.imageUrl} alt={promo.productName} />
+                <div className="absolute top-4 left-4 rounded-md bg-red-600 px-3 py-1.5 text-sm font-black tracking-wide text-white uppercase shadow-sm">
+                  {bestDiscountLabel(promo)}
+                </div>
               </div>
             </div>
           </div>
@@ -124,12 +128,13 @@ export default async function PromoPage({ params }: PromoPageProps) {
                 Pegar promo agora
               </PromoMarketplaceLink>
 
+              <PromoShareButton brandName={promo.brandName} category={promo.category} productName={promo.productName} promoId={promo.id} />
+
               <p className="mt-3 text-center text-xs font-medium text-gray-400 dark:text-gray-500">
                 Precos sujeitos a alteracao no marketplace.
               </p>
             </div>
 
-            <AdSlot placement="pdp-sidebar" compact />
           </aside>
         </div>
       </section>
@@ -150,6 +155,7 @@ export default async function PromoPage({ params }: PromoPageProps) {
           </>
         ) : null}
       </section>
+      <PromoFooter />
     </main>
   );
 }
