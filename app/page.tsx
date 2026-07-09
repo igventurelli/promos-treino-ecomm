@@ -1,4 +1,4 @@
-// import AdSlot from "@/components/promos/ad-slot";
+import AdSlot from "@/components/promos/ad-slot";
 import FilterBar from "@/components/promos/filter-bar";
 import PromoBrand from "@/components/promos/promo-brand";
 import PromoCard from "@/components/promos/promo-card";
@@ -85,8 +85,12 @@ export default async function Home({ searchParams }: HomeProps) {
         <FilterBar filters={filters} options={options} />
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+      <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-12 sm:px-6 lg:grid-cols-[1fr_300px] lg:px-8">
         <div>
+          <div className="mb-5">
+            <AdSlot placement="plp-top" compact />
+          </div>
+
           <div className="mb-4 flex items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-black text-gray-900 dark:text-gray-100">Promos para pegar agora</h2>
@@ -162,12 +166,10 @@ export default async function Home({ searchParams }: HomeProps) {
             </div>
           )}
         </div>
-        {/* Ads paused for now. Keep these slots for future Google Ads integration.
         <aside className="space-y-5">
-          <AdSlot placement="sidebar-top" />
-          <AdSlot placement="sidebar-bottom" />
+          <AdSlot placement="plp-sidebar-top" />
+          <AdSlot placement="plp-sidebar-bottom" />
         </aside>
-        */}
       </section>
     </main>
   );

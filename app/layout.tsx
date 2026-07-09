@@ -4,6 +4,7 @@ import { Suspense } from "react";
 
 import AppProvider from "./app-provider";
 import Theme from "./theme-provider";
+import GoogleAdsense from "@/components/analytics/google-adsense";
 import GoogleAnalytics from "@/components/analytics/google-analytics";
 
 export const metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>
+        <GoogleAdsense />
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-// import AdSlot from "@/components/promos/ad-slot";
+import AdSlot from "@/components/promos/ad-slot";
 import PromoBrand from "@/components/promos/promo-brand";
 import PromoCard from "@/components/promos/promo-card";
 import PromoDetailViewTracker from "@/components/promos/promo-detail-view-tracker";
@@ -129,17 +129,13 @@ export default async function PromoPage({ params }: PromoPageProps) {
               </p>
             </div>
 
-            {/* Ads paused for now. Keep this slot for future Google Ads integration.
             <AdSlot placement="pdp-sidebar" compact />
-            */}
           </aside>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-        {/* Ads paused for now. Keep this slot for future Google Ads integration.
         <AdSlot placement="pdp-before-related" compact />
-        */}
         {related.length > 0 ? (
           <>
             <div className="mt-8 mb-4">
