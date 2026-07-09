@@ -15,7 +15,7 @@ export default function PromoShareButton({ brandName, category, productName, pro
   const [message, setMessage] = useState("");
 
   const copyPromoUrl = async () => {
-    const promoUrl = window.location.href;
+    const promoUrl = `https://protre.fit${window.location.pathname}${window.location.search}${window.location.hash}`;
 
     try {
       await navigator.clipboard.writeText(promoUrl);
